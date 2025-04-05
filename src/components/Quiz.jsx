@@ -3,6 +3,7 @@ import '../styles/Quiz.css'
 import axios from 'axios'
 import Question from "./Question";
 import Card from "./Card";
+import { AiFillCaretRight, AiFillCaretLeft  } from "react-icons/ai";
 
 function Quiz() {
   const [countriesInfo, SetCountriesInfo] = useState([]);
@@ -91,7 +92,7 @@ function Quiz() {
     </header>
 
     <div className="main">
-        <button className="next_prev_btn" onClick={handlePrevQuestion}>prev</button>
+        <button className="next_prev_btn" onClick={handlePrevQuestion}><AiFillCaretLeft /></button>
         <div className="question">
         <Card currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion}>
             {questions.filter((question, index) => index+1 == currentQuestion).map((question, index) => (
@@ -109,7 +110,7 @@ function Quiz() {
             }
         </Card>
         </div>
-        <button className="next_prev_btn" onClick={handleNextQuestion}>next</button>
+        <button className="next_prev_btn" onClick={handleNextQuestion}><AiFillCaretRight /></button>
     </div>
 
   </div>;

@@ -21,7 +21,11 @@ header{
     margin: 0em 15em;
 }
 
-.next_prev_btn{
-    margin-top: 15em;
-    height: 2em;
+.next_prev_btn {
+    margin-top: 10em;
+    height: 4em;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+    background: #7d82b1;
 }
