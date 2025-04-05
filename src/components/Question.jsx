@@ -3,7 +3,7 @@ import '../styles/Question.css'
 import img from '../assets/Check.svg'
 import img2 from '../assets/Close.svg'
 
-function Question({id, question, countriesInfo, userPoints, setuserPoints, handleNextQuestion}) {
+function Question({id, question, countriesInfo, userPoints, setuserPoints, questions, setQuestions}) {
 
     
     const threeCountries = useMemo(() => {
@@ -15,21 +15,32 @@ function Question({id, question, countriesInfo, userPoints, setuserPoints, handl
       }, [question.answer]);
 
     const [buttonPressed, setButtonPressed] = useState(false)
+      
+    console.log("dasfsdf", questions.map((q) => 
+        q.question == question.question ? {...q, completed: true} : q
+    ))
+
 
     const handleRightAnswer = (e) => {
         e.preventDefault()
         setButtonPressed(true)
         setuserPoints(userPoints+1)
+        setQuestions(questions.map((q) => 
+            (q.question == question.question ? {...q, completed: true} : q)
+        ))
     }
 
     const handleWrongAnswer = (e) => {
         e.preventDefault()
         setButtonPressed(true)
+        setQuestions(questions.map((q) => 
+            (q.question == question.question ? {...q, completed: true} : q)
+        ))
     }
 
     return (
         <>
-            <div className="question">{id} {question.question}</div>
+            <div className="question">{question.question}</div>
 
         
 

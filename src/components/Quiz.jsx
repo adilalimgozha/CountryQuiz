@@ -11,57 +11,24 @@ function Quiz() {
   const [userAnswers, setUserAnswers] = useState([]);
   const [showResult, setShowResult] = useState(false);
   const [userPoints, setuserPoints] = useState(0)
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     const api = 'https://restcountries.com/v3.1/all'
     axios.get(api).then((resp) => {
         const allCountries = resp.data.slice(0, 10)
         SetCountriesInfo(allCountries)
+        const newQuestions = allCountries.map((country, index) => ({
+          question: `Question ${index + 1}`,
+          answer: country,
+          completed: false
+        }));
+        setQuestions(newQuestions)
     })
+    
   }, []);
 
-  let questions = [{
-    question: "What is ",
-    answer: countriesInfo[0]
-  }, 
-  {
-    question: "lolka ",
-    answer: countriesInfo[1]
-  },
-  {
-    question: "ds ",
-    answer: countriesInfo[2]
-  },
-  {
-    question: "fs ",
-    answer: countriesInfo[3]
-  },
-  {
-    question: "faafe",
-    answer: countriesInfo[4]
-  },
-  {
-    question: "faaew",
-    answer: countriesInfo[5]
-  },
-  {
-    question: "faeef",
-    answer: countriesInfo[6]
-  },
-  {
-    question: "faee",
-    answer: countriesInfo[7]
-  },
-  {
-    question: "faeef",
-    answer: countriesInfo[8]
-  },
-  {
-    question: "faeafeds",
-    answer: countriesInfo[9]
-  }]
-
-
+  
   const handleAnswer = (questionIndex, answerIndex) => {
     // Update user's answer for the current question
   };
@@ -83,6 +50,7 @@ function Quiz() {
   };
 
   console.log(currentQuestion)
+  console.log(questions)
 
   return <div className="quiz">
 
@@ -103,7 +71,10 @@ function Quiz() {
                 countriesInfo={countriesInfo} 
                 userPoints={userPoints} 
                 setuserPoints={setuserPoints} 
-                handleNextQuestion={handleNextQuestion}/>
+                handleNextQuestion={handleNextQuestion}
+                questions = {questions}
+                setQuestions={setQuestions}
+                />
 
                 
                 ))    
