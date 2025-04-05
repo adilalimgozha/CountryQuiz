@@ -1,0 +1,30 @@
+.question {
+    margin: 1em;
+    font-size: 1.2em;
+}
+
+.answers {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 2em;
+}
+
+.btn{
+    width: 12em;
+    height: 3em;
+    font-size: 1.2em;
+    background: #272b4f;
+    color: white;
+    border-radius: 15px;
+    border: none;
+}
+
+.btn:hover{
+    background: linear-gradient(90deg, #FF5F6D, #845EC2);
+    color: white;
+}
+
+.rightAnswerBtnPressed{
+    background: linear-gradient(90deg, #FF5F6D, #845EC2);
+}
+

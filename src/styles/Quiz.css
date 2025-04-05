@@ -1,0 +1,27 @@
+button:hover {
+    cursor: pointer;
+}
+
+.quiz {
+    color: white;
+    padding: 5m 40em;
+    text-align: center;
+}
+
+header{
+    display: flex;
+
+    gap: 40em;
+    margin-left: 20em;
+    padding-top: 3em;
+}
+
+.main {
+    display: flex;
+    margin: 0em 15em;
+}
+
+.next_prev_btn{
+    margin-top: 15em;
+    height: 2em;
+}
