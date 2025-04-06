@@ -20,5 +20,8 @@
     background: #3e436e;
 }
 
+.num_btn.completed {
+    background: linear-gradient(90deg, #FF5F6D, #845EC2);
+}
 
 

@@ -19,6 +19,7 @@ function Quiz() {
         const allCountries = resp.data.slice(0, 10)
         SetCountriesInfo(allCountries)
         const newQuestions = allCountries.map((country, index) => ({
+          id: index + 1,
           question: `Question ${index + 1}`,
           answer: country,
           completed: false
@@ -62,7 +63,7 @@ function Quiz() {
     <div className="main">
         <button className="next_prev_btn" onClick={handlePrevQuestion}><AiFillCaretLeft /></button>
         <div className="question">
-        <Card currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion}>
+        <Card questions={questions} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion}>
             {questions.filter((question, index) => index+1 == currentQuestion).map((question, index) => (
 
                 <Question key={index} 
