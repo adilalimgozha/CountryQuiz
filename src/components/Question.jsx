@@ -14,7 +14,6 @@ function Question({id, question, countriesInfo, userPoints, setuserPoints, quest
         return shuffledCountries.slice(0, 3);
       }, [question.answer]);
 
-    const [buttonPressed, setButtonPressed] = useState(false)
       
     console.log("dasfsdf", questions.map((q) => 
         q.question == question.question ? {...q, completed: true} : q
@@ -23,19 +22,21 @@ function Question({id, question, countriesInfo, userPoints, setuserPoints, quest
 
     const handleRightAnswer = (e) => {
         e.preventDefault()
-        setButtonPressed(true)
-        setuserPoints(userPoints+1)
-        setQuestions(questions.map((q) => 
-            (q.question == question.question ? {...q, completed: true} : q)
-        ))
+        if (!question.completed){
+            setuserPoints(userPoints+1)
+            setQuestions(questions.map((q) => 
+                (q.question == question.question ? {...q, completed: true} : q)
+            ))
+        }
     }
 
     const handleWrongAnswer = (e) => {
         e.preventDefault()
-        setButtonPressed(true)
-        setQuestions(questions.map((q) => 
-            (q.question == question.question ? {...q, completed: true} : q)
-        ))
+        if (!question.completed){
+            setQuestions(questions.map((q) => 
+                (q.question == question.question ? {...q, completed: true} : q)
+            ))
+        }
     }
 
     return (
@@ -45,10 +46,10 @@ function Question({id, question, countriesInfo, userPoints, setuserPoints, quest
         
 
             <form className='answers'>
-                <div onClick={handleRightAnswer} className="rightAnswer"><button className={`btn ${buttonPressed ? 'rightAnswerBtnPressed': 'rightAnswerBtn'}`}>{question.answer != undefined && question.answer.name.common} {buttonPressed && <img src={img}/>}</button></div>
+                <div onClick={handleRightAnswer}><button className={`btn ${question.completed ? 'rightAnswerBtnPressed': 'rightAnswerBtn'}`}>{question.answer != undefined && question.answer.name.common} {question.completed && <img src={img}/>}</button></div>
 
                 {threeCountries.map((country, index) => 
-                    <div onClick={handleWrongAnswer} key={index}><button className={`btn ${buttonPressed ? 'wrongAnswerBtnPressed': 'wrongAnswerBtn'}`}> {country.name.common} {buttonPressed && <img src={img2}/>}</button></div>
+                    <div onClick={handleWrongAnswer} key={index}><button className={`btn ${question.completed ? 'wrongAnswerBtnPressed': 'wrongAnswerBtn'}`}> {country.name.common} {question.completed && <img src={img2}/>}</button></div>
                 )}
             </form>
             
