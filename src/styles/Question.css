@@ -24,12 +24,12 @@
     color: white;
 }
 
-.rightAnswerBtnPressed{
+.coloredAnswer{
     background: linear-gradient(90deg, #FF5F6D, #845EC2);
     pointer-events: none;
 }
 
-.wrongAnswerBtnPressed{
+.unColoredAnswer{
     pointer-events: none;
 }
 

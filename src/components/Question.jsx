@@ -13,6 +13,9 @@ function Question({id, question, countriesInfo, userPoints, setuserPoints, quest
         const shuffledCountries = [...nineCountries].sort(() => 0.5 - Math.random());
         return shuffledCountries.slice(0, 3);
       }, [question.answer]);
+    
+    
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
 
       
     console.log("dasfsdf", questions.map((q) => 
@@ -27,15 +30,17 @@ function Question({id, question, countriesInfo, userPoints, setuserPoints, quest
             setQuestions(questions.map((q) => 
                 (q.question == question.question ? {...q, completed: true} : q)
             ))
+            setSelectedAnswer(question.answer)
         }
     }
 
-    const handleWrongAnswer = (e) => {
+    const handleWrongAnswer = (country) => (e) => {
         e.preventDefault()
         if (!question.completed){
             setQuestions(questions.map((q) => 
                 (q.question == question.question ? {...q, completed: true} : q)
             ))
+            setSelectedAnswer(country.name.common)
         }
     }
 
@@ -46,10 +51,10 @@ function Question({id, question, countriesInfo, userPoints, setuserPoints, quest
         
 
             <form className='answers'>
-                <div onClick={handleRightAnswer}><button className={`btn ${question.completed ? 'rightAnswerBtnPressed': 'rightAnswerBtn'}`}>{question.answer != undefined && question.answer.name.common} {question.completed && <img src={img}/>}</button></div>
+                <div onClick={handleRightAnswer}><button className={`btn ${question.completed && (selectedAnswer === question.answer ? 'coloredAnswer' : 'unColoredAnswer')}`}>{question.answer != undefined && question.answer.name.common} {question.completed && <img src={img}/>}</button></div>
 
                 {threeCountries.map((country, index) => 
-                    <div onClick={handleWrongAnswer} key={index}><button className={`btn ${question.completed ? 'wrongAnswerBtnPressed': 'wrongAnswerBtn'}`}> {country.name.common} {question.completed && <img src={img2}/>}</button></div>
+                    <div onClick={handleWrongAnswer(country)} key={index}><button className={`btn ${question.completed && (selectedAnswer === country.name.common ? 'coloredAnswer' : 'unColoredAnswer')}`}> {country.name.common} {question.completed && <img src={img2}/>}</button></div>
                 )}
             </form>
             
