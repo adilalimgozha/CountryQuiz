@@ -12,6 +12,7 @@ function Quiz() {
   const [showResult, setShowResult] = useState(false);
   const [userPoints, setuserPoints] = useState(0)
   const [questions, setQuestions] = useState([]);
+  const [selectedAnswers, setSelectedAnswers] = useState({});
 
   useEffect(() => {
     const api = 'https://restcountries.com/v3.1/all'
@@ -64,10 +65,10 @@ function Quiz() {
         <button className="next_prev_btn" onClick={handlePrevQuestion}><AiFillCaretLeft /></button>
         <div className="question">
         <Card questions={questions} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion}>
-            {questions.filter((question, index) => index+1 == currentQuestion).map((question, index) => (
+            {questions.filter((question) => question.id == currentQuestion).map(question => (
 
-                <Question key={index} 
-                id={index+1} 
+                <Question key={question.id} 
+                id={question.id} 
                 question={question} 
                 countriesInfo={countriesInfo} 
                 userPoints={userPoints} 
@@ -75,6 +76,8 @@ function Quiz() {
                 handleNextQuestion={handleNextQuestion}
                 questions = {questions}
                 setQuestions={setQuestions}
+                selectedAnswers={selectedAnswers}
+                setSelectedAnswers = {setSelectedAnswers}
                 />
 
                 
